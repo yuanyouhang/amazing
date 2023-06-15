@@ -6,6 +6,16 @@ const routes = [
     path: '/',
     component: DemoEntry
   },
+  {
+    path: '/CanvasDemo',
+    name: 'CanvasDemo',
+    component: () => import('@/views/CanvasDemo.vue')
+  },
+  {
+    path: '/AudioDemo',
+    name: 'AudioDemo',
+    component: () => import('@/views/AudioDemo.vue')
+  },
 ]
 
 const router = createRouter({
