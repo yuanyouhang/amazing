@@ -21,15 +21,9 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from 'vue-router'
+import getBgColor from "@/utils/getRandomColor"
+
 const router = useRouter()
-
-const getRandomNum = () => {
-  return Math.floor(Math.random() * 256) 
-}
-const getBgColor = () => {
-  return `rgb(${getRandomNum()}, ${getRandomNum()}, ${getRandomNum()})`
-}
-
 const items = ref([
   { id: 1, name:'Canvas', bgColor: getBgColor(), path: '/CanvasDemo' },
   { id: 2, name: 'Audio', bgColor: getBgColor(), path: '/AudioDemo' },
