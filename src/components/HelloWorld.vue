@@ -1,12 +1,16 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
+import { useThemeStore } from '@/stores/useThemeStore'
+const themeStore = useThemeStore()
 
 const setLightTheme = () => {
   localStorage.theme = 'light'
+  themeStore.changeTheme('light')
   document.documentElement.classList.remove('dark')
 }
 const setDarkTheme = () => {
   localStorage.theme = 'dark'
+  themeStore.changeTheme('dark')
   document.documentElement.classList.add('dark')
 }
 if (!('theme' in localStorage)) {
