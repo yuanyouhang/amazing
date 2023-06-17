@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between border rounded-2xl shadow-inner">
+  <div class="flex justify-between border rounded-2xl shadow-[6px_5px_10px_1px_#9A969B] dark:shadow-none">
     <div class="flex-1 m-4 overflow-auto h-[500px]">
       <label
         for="selector"
@@ -12,6 +12,7 @@
           class="p-2 my-1 hover:bg-slate-200 cursor-pointer dark:hover:bg-slate-400"
           @click="playAudio(item, index)"
           :class="[{'bg-slate-300': index === currentPlayIndex}, {'dark:bg-slate-500': index === currentPlayIndex}]"
+          title="点击播放"
         >
           {{ item.name }}
         </div>
@@ -20,7 +21,12 @@
     </div>
     <canvas width="650" height="500" id="canvas" class="bg-slate-200 rounded-r-xl cursor-pointer" title="点击变色"></canvas>
   </div>
-  <audio :src="audioSrc" ref="audioRef" controls class="mx-auto my-2"></audio>
+  <div class="flex items-center">
+    <el-icon size="28" class="cursor-pointer" @click="$router.back()">
+      <i-ep-ArrowLeftBold />
+    </el-icon>
+    <audio :src="audioSrc" ref="audioRef" controls class="mx-auto my-2"></audio>
+  </div>
 </template>
 
 <script setup>
