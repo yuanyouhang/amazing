@@ -32,10 +32,13 @@ function getRadius() {
 }
 
 const minX = 15
-const maxX = innerWidth * devicePixelRatio - 15
+let maxX = innerWidth * devicePixelRatio - 15
 const minY = 15
-const maxY = innerHeight * devicePixelRatio - 15
+let maxY = innerHeight * devicePixelRatio - 15
 function getPointCenter() {
+  // 在窗口大小变化时重新计算最大x、y
+  maxX = innerWidth * devicePixelRatio - 15
+  maxY = innerHeight * devicePixelRatio - 15
   let x = Math.floor(Math.random() * (maxX + 1))
   let y = Math.floor(Math.random() * (maxY + 1))
   if(x < minX) {
@@ -100,14 +103,18 @@ class Point {
     ctx.fill()
   }
 }
+
 const pointNumber = 400
-const points = new Array(pointNumber).fill(0).map(() => {
-  const [x, y] = getPointCenter()
-  const radius = getRadius()
-  const v = getV()
-  const point = new Point(x, y, radius, v)
-  return point
-})
+let points = []
+function initPoints() {
+  points = new Array(pointNumber).fill(0).map(() => {
+    const [x, y] = getPointCenter()
+    const radius = getRadius()
+    const v = getV()
+    const point = new Point(x, y, radius, v)
+    return point
+  })
+}
 
 function animate() {
   ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height)
@@ -135,9 +142,12 @@ function animate() {
 
 onMounted(() => {
   initBgCanvas()
-  for(let i=0; i<points.length; i++) {
-    points[i].drawStar()
-  }
+  initPoints()
   animate()
+})
+
+window.addEventListener('resize', () => {
+  initBgCanvas()
+  initPoints()
 })
 </script>
