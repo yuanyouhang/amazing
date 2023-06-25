@@ -3,9 +3,6 @@
       <canvas id="canvas" style="background-color: #FFFFFF;" class="cursor-pointer"></canvas>
     </div>
     <div class="h-1/6 p-4 flex justify-around items-center">
-      <el-icon size="28" class="cursor-pointer" @click="$router.back()">
-        <i-ep-ArrowLeftBold />
-      </el-icon>
       <div>
         <el-color-picker v-model="lineColor" @change="changeColor" />
       </div>
@@ -18,7 +15,6 @@
         <el-button type="primary" @click="save">保存</el-button>
       </div>
     </div>
-
 </template>
 
 <script setup>

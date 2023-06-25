@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between border rounded-2xl shadow-[6px_5px_10px_1px_#9A969B] dark:shadow-none">
+  <div class="flex justify-between border rounded-2xl shadow-[6px_5px_2px_1px_#9A969B] dark:shadow-none">
     <div class="flex-1 m-4 overflow-auto h-[500px]">
       <label
         for="selector"
@@ -22,9 +22,6 @@
     <canvas width="650" height="500" id="canvas" class="bg-slate-200 rounded-r-xl cursor-pointer" title="点击变色"></canvas>
   </div>
   <div class="flex items-center">
-    <el-icon size="28" class="cursor-pointer" @click="$router.back()">
-      <i-ep-ArrowLeftBold />
-    </el-icon>
     <audio :src="audioSrc" ref="audioRef" controls class="mx-auto my-2"></audio>
   </div>
 </template>

@@ -41,10 +41,10 @@ function drawInner() {
 }
 
 function drawOuter() {
+  ctx.translate(originX, originY)
   ctx.strokeStyle = '#F8EB95'
   ctx.lineWidth = 1.5
   ctx.lineCap = 'round'
-  ctx.translate(originX, originY)
   for(let i = 0; i < lines.length; i++) {
     let len = 1
     if(lines[i] > 1) {
@@ -59,12 +59,6 @@ function drawOuter() {
 }
 
 onMounted(() => {
-  initBgCanvas()
-  drawInner()
-  drawOuter()
-})
-
-window.addEventListener('resize', () => {
   initBgCanvas()
   drawInner()
   drawOuter()
