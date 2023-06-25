@@ -4,7 +4,7 @@
     ref="containerRef"
   >
     <div
-      class="w-1/4 h-1/4 rounded-lg cursor-pointer hover:scale-110 transition-all flex justify-center items-center text-xl shadow-[3px_4px_10px_1px_#9A969B] dark:shadow-none"
+      class="w-1/4 h-1/4 rounded-lg cursor-pointer hover:scale-110 transition-all flex justify-center items-center text-xl shadow-[5px_5px_2px_1px_#9A969B] dark:shadow-none"
       v-for="item in items"
       :style="{ 'background-color': item.bgColor }"
       :draggable="true"
@@ -27,13 +27,13 @@ const router = useRouter()
 const items = ref([
   { id: 1, name:'Canvas', bgColor: getBgColor(), path: '/CanvasDemo' },
   { id: 2, name: 'Audio', bgColor: getBgColor(), path: '/AudioDemo' },
-  { id: 3, bgColor: getBgColor() },
+  { id: 3, name: 'ClipPath', bgColor: getBgColor(), path: '/ClipPath' },
   { id: 4, bgColor: getBgColor() },
   { id: 5, bgColor: getBgColor() },
   { id: 6, bgColor: getBgColor() },
   { id: 7, bgColor: getBgColor() },
   { id: 8, bgColor: getBgColor() },
-  { id: 9, bgColor: getBgColor() },
+  { id: 9, name: 'More...', bgColor: getBgColor() },
 ])
 const containerRef = ref(null)
 

@@ -16,6 +16,11 @@ const routes = [
     name: 'AudioDemo',
     component: () => import('@/views/AudioDemo.vue')
   },
+  {
+    path: '/ClipPath',
+    name: 'ClipPath',
+    component: () => import('@/views/ClipPath.vue')
+  },
 ]
 
 const router = createRouter({
