@@ -12,6 +12,7 @@
       @dragover="dragover"
       @drop.prevent="drop(item)"
       @click="clickItem(item)"
+      title="长按拖动"
     >
       {{ item.name }}
     </div>
@@ -28,12 +29,12 @@ const items = ref([
   { id: 1, name:'Canvas', bgColor: getBgColor(), path: '/CanvasDemo' },
   { id: 2, name: 'Audio', bgColor: getBgColor(), path: '/AudioDemo' },
   { id: 3, name: 'ClipPath', bgColor: getBgColor(), path: '/ClipPath' },
-  { id: 4, bgColor: getBgColor() },
-  { id: 5, bgColor: getBgColor() },
+  { id: 4, name: 'Articles', bgColor: getBgColor(), path: '/Articles' },
+  { id: 5, name: 'Video', bgColor: getBgColor(), path: '/Video' },
   { id: 6, bgColor: getBgColor() },
   { id: 7, bgColor: getBgColor() },
   { id: 8, bgColor: getBgColor() },
-  { id: 9, name: 'More...', bgColor: getBgColor() },
+  { id: 9, name: 'More...', bgColor: getBgColor(), path: '/More' },
 ])
 const containerRef = ref(null)
 

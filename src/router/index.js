@@ -21,6 +21,21 @@ const routes = [
     name: 'ClipPath',
     component: () => import('@/views/ClipPath.vue')
   },
+  {
+    path: '/Articles',
+    name: 'Articles',
+    component: () => import('@/views/Articles.vue')
+  },
+  {
+    path: '/Video',
+    name: 'Video',
+    component: () => import('@/views/Video.vue')
+  },
+  {
+    path: '/More',
+    name: 'More',
+    component: () => import('@/views/More.vue')
+  },
 ]
 
 const router = createRouter({
