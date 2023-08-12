@@ -31,7 +31,7 @@ const items = ref([
   { id: 3, name: 'ClipPath', bgColor: getBgColor(), path: '/ClipPath' },
   { id: 4, name: 'Articles', bgColor: getBgColor(), path: '/Articles' },
   { id: 5, name: 'Video', bgColor: getBgColor(), path: '/Video' },
-  { id: 6, bgColor: getBgColor() },
+  { id: 6, name: 'Sort', bgColor: getBgColor(), path: '/Sort' },
   { id: 7, bgColor: getBgColor() },
   { id: 8, bgColor: getBgColor() },
   { id: 9, name: 'More...', bgColor: getBgColor(), path: '/More' },
