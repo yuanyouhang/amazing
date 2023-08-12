@@ -4,7 +4,9 @@
       <i-ep-ArrowLeftBold />
     </el-icon>
     <div class="italic text-2xl font-bold mx-auto">Hello, World!</div>
-    <div class="absolute right-0">
+    <div class="absolute right-0 flex items-center">
+      <img class="dark:hidden h-6 w-6 mx-4 cursor-pointer hover:opacity-80" src="@/assets/github.svg" @click="toGithub">
+      <img class="hidden dark:block h-6 w-6 mx-4 cursor-pointer hover:opacity-80" src="@/assets/github-dark.svg" @click="toGithub">
       <el-switch
         size="large"
         v-model="theme"
@@ -58,4 +60,9 @@ watchEffect(() => {
     setDarkTheme()
   }
 })
+
+const github = "https://github.com/yuanyouhang/amazing"
+function toGithub() {
+  window.open(github, '_blank')
+}
 </script>
