@@ -21,9 +21,18 @@ const get = (path, params) => {
   })
 }
 
-function getVideos(params) {
-  return get('/getVideos', params)
+const api = {
+  getVideos(params) {
+    return get('/getVideos', params)
+  },
+  getArticles(params) {
+    return get('/getArticles', params)
+  },
+  getSites(params) {
+    return get('/getSites', params)
+  },
 }
-export default {
-  getVideos,
-}
+
+
+
+export default api
