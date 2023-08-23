@@ -1,10 +1,10 @@
 <template>
-  <header class="py-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-32 2xl:mx-64 flex items-center relative">
+  <header class="py-2 mx-auto sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48 container flex items-center">
     <el-icon size="28" class="cursor-pointer" @click="$router.back()" :class="{'invisible': !showBack}">
       <i-ep-ArrowLeftBold />
     </el-icon>
     <div class="italic text-2xl font-bold mx-auto">Hello, World!</div>
-    <div class="absolute right-0 flex items-center">
+    <div class="flex items-center">
       <img class="dark:hidden h-6 w-6 mx-4 cursor-pointer hover:opacity-80" src="@/assets/github.svg" @click="toGithub">
       <img class="hidden dark:block h-6 w-6 mx-4 cursor-pointer hover:opacity-80" src="@/assets/github-dark.svg" @click="toGithub">
       <el-switch

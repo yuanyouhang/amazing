@@ -36,9 +36,9 @@
       <div v-else class="p-2 w-full text-center">暂无数据</div>
     </div>
     <!-- 播放页 -->
-    <div v-else class="border mx-2 h-full flex flex-col">
-      <div class="text-right">
-        <el-icon size="28" class="cursor-pointer" @click="closePlayer">
+    <div v-else class="h-full flex flex-col">
+      <div class="text-right h-[28px]">
+        <el-icon size="28" class="cursor-pointer hover:rotate-180 duration-500" @click="closePlayer">
           <i-ep-Close />
         </el-icon>
       </div>
@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-import { inject, ref, onMounted } from 'vue';
+import { inject, ref, onMounted, onActivated } from 'vue';
 
 const api = inject('API')
 const videos = ref([])
@@ -84,6 +84,9 @@ function closePlayer() {
   currentPlay.value = {}
   showPlayer.value = false
 }
+onActivated(() => {
+  showPlayer.value = false
+})
 
 const downloadList = ref([])
 function addToDownload(item) {

@@ -3,7 +3,7 @@
     <div>
       持续学习以创造更多：
     </div>
-    <div class="flex-1 overflow-auto p-4 border mt-2 rounded shadow-inner">
+    <div class="flex-1 overflow-auto p-4 border mt-2 rounded shadow-inner" v-loading="loading" element-loading-background="rgba(0,0,0,0)">
       <div class="h-full overflow-auto">
         <div
           v-for="item in sites"
@@ -21,8 +21,11 @@ import { inject, ref, onMounted } from 'vue'
 
 const api = inject('API')
 const sites =ref([])
+const loading = ref(false)
 async function getSites() {
+  loading.value = true
   const res = await api.getSites()
+  loading.value = false
   sites.value = res.data
 }
 onMounted(() => {
