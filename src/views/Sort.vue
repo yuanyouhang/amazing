@@ -78,10 +78,10 @@ const sortList = [
       '适用场景：快速排序是一种高效的排序算法，适用于处理大规模数据和需要快速排序的场景。它的平均时间复杂度为O(nlogn)，且具有原地排序的特点。快速排序在实际应用中被广泛使用，是许多编程语言中的默认排序算法。'
     ] 
   },
-  { name: "选择排序", todo: true },
-  { name: "插入排序", todo: true },
-  { name: "归并排序", todo: true },
-  { name: "堆排序", todo: true }
+  // { name: "选择排序", todo: true },
+  // { name: "插入排序", todo: true },
+  // { name: "归并排序", todo: true },
+  // { name: "堆排序", todo: true }
 ]
 const currentSort = ref(sortList[0])
 
