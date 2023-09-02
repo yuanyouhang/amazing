@@ -11,7 +11,7 @@ variables:
   SSH_HOST: "121.40.145.223"
   # SSH_PORT: "22"
   SSH_USER: "root"
-  APP_PATH: "/app/amazing"
+  APP_PATH: "/app/amazing/dist/"
 
 stages:
   - build
@@ -31,12 +31,7 @@ build:
 
 deploy:
   stage: deploy
-  image: alpine
-  before_script:
-    - apk add --no-cache rsync openssh
   script:
-    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - rsync -rav --delete dist/ $SSH_USER@$SSH_HOST:$APP_PATH
+    - scp -r dist/* $SSH_USER@$SSH_HOST:$APP_PATH # 将构建产物拷贝到服务器
   only:
     - master
