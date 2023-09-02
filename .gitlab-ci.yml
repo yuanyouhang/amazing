@@ -19,7 +19,6 @@ stages:
 
 build:
   stage: build
-  image: node:16
   script:
     - npm ci
     - npm run build
