@@ -11,7 +11,7 @@ variables:
   SSH_HOST: "121.40.145.223"
   # SSH_PORT: "22"
   SSH_USER: "root"
-  APP_PATH: "/app/amazing/dist/"
+  APP_PATH: "/app/amazing/"
 
 stages:
   - build
