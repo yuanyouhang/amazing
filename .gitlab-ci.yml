@@ -1,10 +1,9 @@
-default:
-  cache:  # Cache modules using lock file
-    key:
-      files:
-        - package-lock.json
-    paths:
-      - .npm/
+cache:  # Cache modules using lock file
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
       
 # 定义全局变量
 variables:
