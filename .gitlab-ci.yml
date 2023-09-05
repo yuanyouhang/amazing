@@ -30,6 +30,6 @@ build:
 deploy:
   stage: deploy
   script:
-    - scp -r dist/* ${SSH_USER}@${SSH_HOST}:${APP_PATH} # 将构建产物拷贝到服务器
+    - scp -r ./dist/* ${SSH_USER}@${SSH_HOST}:${APP_PATH} # 将构建产物拷贝到服务器
   only:
     - master
