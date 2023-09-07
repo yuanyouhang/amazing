@@ -26,7 +26,7 @@ async function getSites() {
   loading.value = true
   const res = await api.getSites()
   loading.value = false
-  sites.value = res.data
+  sites.value = res
 }
 onMounted(() => {
   getSites()

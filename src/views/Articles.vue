@@ -51,7 +51,7 @@ async function getArticles() {
   const res = await api.getArticles()
   loading.value = false
   console.log('获取文章列表返回：', res)
-  articles.value = res.data
+  articles.value = res
 }
 onMounted(() => {
   getArticles()
