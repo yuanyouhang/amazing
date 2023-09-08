@@ -5,8 +5,9 @@
     </el-icon>
     <div class="italic text-2xl font-bold mx-auto">Hello, World!</div>
     <div class="flex items-center">
-      <img class="dark:hidden h-6 w-6 mx-4 cursor-pointer hover:opacity-80" src="@/assets/github.svg" @click="toGithub">
-      <img class="hidden dark:block h-6 w-6 mx-4 cursor-pointer hover:opacity-80" src="@/assets/github-dark.svg" @click="toGithub">
+      <span class="font-bold hover:text-sky-400 cursor-pointer" @click="toArticles">Blog</span>
+      <img class="dark:hidden h-6 w-6 mx-6 cursor-pointer hover:opacity-80" src="@/assets/github.svg" @click="toGithub">
+      <img class="hidden dark:block h-6 w-6 mx-6 cursor-pointer hover:opacity-80" src="@/assets/github-dark.svg" @click="toGithub">
       <el-switch
         size="large"
         v-model="theme"
@@ -24,7 +25,9 @@
 import { ref, watch, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { useThemeStore } from '@/stores/useThemeStore'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const route = useRoute()
 const showBack = ref(false)
 watch(() => route.path, (newPath) => {
@@ -64,5 +67,9 @@ watchEffect(() => {
 const github = "https://github.com/yuanyouhang/amazing"
 function toGithub() {
   window.open(github, '_blank')
+}
+
+function toArticles() {
+  router.push('/Articles')
 }
 </script>

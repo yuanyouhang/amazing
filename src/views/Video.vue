@@ -60,7 +60,7 @@ const getVideos = async () => {
   const res = await api.getVideos()
   loading.value = false
   console.log('获取视频列表返回：', res)
-  videos.value = res.data.map(item => {
+  videos.value = res.map(item => {
     return {
       ...item,
       downloading: false,
