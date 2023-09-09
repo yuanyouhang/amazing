@@ -18,7 +18,7 @@ const get = (path, params) => {
     return res
   })
   .catch(err => {
-    return err
+    return err // TODO:错误处理
   })
 }
 
@@ -32,6 +32,12 @@ const api = {
   getSites(params) {
     return get('/sites', params)
   },
+  getPhysicists(params) {
+    return get('/physicists', params)
+  },
+  getConcepts(params) {
+    return get('/concepts', params)
+  }
 }
 
 

@@ -7,19 +7,19 @@ const routes = [
     component: DemoEntry
   },
   {
-    path: '/CanvasDemo',
-    name: 'CanvasDemo',
+    path: '/Canvas',
+    name: 'Canvas',
     component: () => import('@/views/CanvasDemo.vue')
   },
   {
-    path: '/AudioDemo',
-    name: 'AudioDemo',
+    path: '/Audio',
+    name: 'Audio',
     component: () => import('@/views/AudioDemo.vue')
   },
   {
-    path: '/ClipPath',
-    name: 'ClipPath',
-    component: () => import('@/views/ClipPath.vue')
+    path: '/News',
+    name: 'News',
+    component: () => import('@/views/News.vue')
   },
   {
     path: '/Articles',
@@ -40,6 +40,27 @@ const routes = [
     path: '/More',
     name: 'More',
     component: () => import('@/views/More.vue')
+  },
+  {
+    path: '/Physics',
+    name: 'Physics',
+    component: () => import('@/views/Physics.vue'),
+    children: [
+      {
+        path: '',
+        redirect: '/Physics/PhysicsHome'
+      },
+      {
+        path: 'PhysicsHome',
+        name: 'PhysicsHome',
+        component: () => import('@/views/Physics/PhysicsHome.vue')
+      },
+      {
+        path: 'Physicists',
+        name: 'Physicists',
+        component: () => import('@/views/Physics/Physicists.vue')
+      },
+    ]
   },
 ]
 

@@ -1,10 +1,10 @@
 <template>
-  <header class="py-2 mx-auto sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48 container flex items-center">
+  <header class="py-2 mx-auto sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48 container flex items-center relative">
     <el-icon size="28" class="cursor-pointer" @click="$router.back()" :class="{'invisible': !showBack}">
       <i-ep-ArrowLeftBold />
     </el-icon>
-    <div class="italic text-2xl font-bold mx-auto">Hello, World!</div>
-    <div class="flex items-center">
+    <div class="italic text-2xl font-bold absolute left-1/2 -translate-x-1/2">{{ welcome || 'Hello, World!' }}</div>
+    <div class="flex items-center ml-auto">
       <span class="font-bold hover:text-sky-400 cursor-pointer" @click="toArticles">Blog</span>
       <img class="dark:hidden h-6 w-6 mx-6 cursor-pointer hover:opacity-80" src="@/assets/github.svg" @click="toGithub">
       <img class="hidden dark:block h-6 w-6 mx-6 cursor-pointer hover:opacity-80" src="@/assets/github-dark.svg" @click="toGithub">
@@ -29,8 +29,10 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
+const welcome = ref('')
 const showBack = ref(false)
 watch(() => route.path, (newPath) => {
+  welcome.value = route.name
   if (newPath === '/') {
     showBack.value = false
   }

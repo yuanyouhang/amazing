@@ -26,14 +26,14 @@ import getBgColor from "@/utils/getRandomColor"
 
 const router = useRouter()
 const items = ref([
-  { id: 1, name:'Canvas', bgColor: getBgColor(), path: '/CanvasDemo' },
-  { id: 2, name: 'Audio', bgColor: getBgColor(), path: '/AudioDemo' },
-  { id: 3, name: 'ClipPath', bgColor: getBgColor(), path: '/ClipPath' },
+  { id: 1, name:'Canvas', bgColor: getBgColor(), path: '/Canvas' },
+  { id: 2, name: 'Audio', bgColor: getBgColor(), path: '/Audio' },
+  { id: 3, name: 'News', bgColor: getBgColor(), path: '/News' },
   { id: 4, name: 'Articles', bgColor: getBgColor(), path: '/Articles' },
   { id: 5, name: 'Video', bgColor: getBgColor(), path: '/Video' },
   { id: 6, name: 'Sort', bgColor: getBgColor(), path: '/Sort' },
-  { id: 7, bgColor: getBgColor() },
-  { id: 8, bgColor: getBgColor() },
+  { id: 7, name: 'Physics', bgColor: getBgColor(), path: '/Physics' },
+  { id: 8, name: 'Unknown', bgColor: getBgColor() },
   { id: 9, name: 'More...', bgColor: getBgColor(), path: '/More' },
 ])
 const containerRef = ref(null)
@@ -58,6 +58,15 @@ const drop = (item) => {
 const clickItem = (item) => {
   if(item.path) {
     router.push(item.path)
+  }
+  else {
+    const unknownIndex = items.value.findIndex(i => i.name === 'Unknown')
+    let randomIndex = Math.floor(Math.random() * items.value.length)
+    while(randomIndex === unknownIndex) {
+      randomIndex = Math.floor(Math.random() * items.value.length)
+    }
+    const path = items.value[randomIndex].path
+    router.push(path)
   }
 }
 </script>

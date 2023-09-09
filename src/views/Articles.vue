@@ -3,7 +3,7 @@
     <template v-if="!showArticle">
       <div class="flex-1 border shadow-[6px_4px_3px_0px_#918F8F] dark:shadow-none overflow-auto rounded p-6 bg-white text-black">
         <div
-          class="px-4 py-2 cursor-pointer hover:bg-slate-100 mb-6 items-center rounded"
+          class="px-4 py-2 cursor-pointer bg-slate-50 hover:bg-slate-100 mb-6 items-center rounded"
           v-for="item,index in articles"
           :key="item._id"
           @click="showDetail(item, index)"
@@ -25,6 +25,7 @@
     </template>
     <template v-else>
       <div class="flex bg-white text-black p-2 rounded-t">
+        <div class="cursor-pointer text-blue-500 text-xl ml-6" @click="closeDetail">返回</div>
         <div class="flex flex-1 justify-around">
           <div class="cursor-pointer flex items-center opacity-60 hover:opacity-100" @click="preArticle" v-if="currentArticleIndex!==0">
             <el-icon size="20" class="mr-2">
@@ -39,7 +40,6 @@
             </el-icon>
           </div>
         </div>
-        <div class="cursor-pointer text-blue-500 text-xl mr-6" @click="closeDetail">返回</div>
       </div>
       <div class="flex-1 overflow-auto rounded-b px-8 py-1 bg-white text-black" id="shadowContainer"></div>
     </template>
@@ -112,7 +112,8 @@ function setShadowInner() {
   `
   shadowRoot.prepend(link)
   shadowRoot.prepend(style)
-  
+  const container = document.getElementById('shadowContainer')
+  container.scroll(0, 0)
 }
 
 const currentArticleIndex = ref(0)
