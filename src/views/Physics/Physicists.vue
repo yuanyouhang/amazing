@@ -7,6 +7,7 @@
         class="hover:text-sky-400 py-2 mt-2 text-ellipsis overflow-hidden whitespace-nowrap p-2 rounded cursor-pointer"
         :class="{'bg-slate-100 text-sky-400': item._id === currentItem._id}"
         @click="changeItem(item)"
+        :title="item.name"
       >
         {{ item.name }}
       </div>
@@ -25,10 +26,8 @@
 
 <script setup>
 import { inject, ref, onMounted, computed } from 'vue'
-import { useRoute } from 'vue-router'
 import purify from '@/utils/dompurify.js'
 
-const route = useRoute()
 const api = inject('API')
 const physicists = ref([])
 const loading = ref(false)
@@ -42,25 +41,19 @@ async function getPhysicists() {
       info: JSON.parse(item.info)
     }
   })
-  if(route.params.id) {
-    const item = physicists.value.find(i => i._id === route.params.id)
-    changeItem(item)
-  }
-  else {
-    const item = physicists.value[0]
-    changeItem(item)
-  }
+  const item = physicists.value[0]
+  changeItem(item)
 }
-onMounted(() => {
-  getPhysicists()
-})
 
 const detailContainer = ref(null)
 const introContainer = ref(null)
+let introShadowDOM, detailShadowDOM
 function createDetailShadowDOM() {
   const container = detailContainer.value
-  const shadowRoot = container.attachShadow({ mode: 'open' });
-  shadowRoot.innerHTML = currentItem.value.detailContent
+  detailShadowDOM = container.attachShadow({ mode: 'open' });
+}
+function setDetailShadowContent() {
+  detailShadowDOM.innerHTML = currentItem.value.detailContent
   const style = document.createElement('style')
   style.textContent = `
   img {
@@ -68,23 +61,25 @@ function createDetailShadowDOM() {
     margin: 0 auto;
   }
   `
-  shadowRoot.prepend(style)
+  detailShadowDOM.prepend(style)
+  introContainer.value.scrollIntoView()
 }
 function createIntroShadowDOM() {
   const container = introContainer.value
-  const shadowRoot = container.attachShadow({ mode: 'open' });
-  shadowRoot.innerHTML = purify(currentItem.value.info.intro)
+  introShadowDOM = container.attachShadow({ mode: 'open' });
+}
+function setIntroShadowContent() {
+  introShadowDOM.innerHTML = purify(currentItem.value.info.intro)
   const style = document.createElement('style')
   style.textContent = `
   p {
     margin: 0;
   }
   `
-  shadowRoot.prepend(style)
+  introShadowDOM.prepend(style)
 }
 
 function getDetail() {
-  if(currentItem.value.detailContent) return
   fetch(currentItem.value.detail).then(res => {
     return res.text()
   }).then(text => {
@@ -92,14 +87,21 @@ function getDetail() {
       ...currentItem.value,
       detailContent: purify(text)
     }
-    createDetailShadowDOM()
+    setDetailShadowContent()
   })
 }
 
 const currentItem = ref({})
 function changeItem(item) {
+  if(item._id === currentItem.value._id) return
   currentItem.value = item
-  createIntroShadowDOM()
+  setIntroShadowContent()
   getDetail()
 }
+
+onMounted(() => {
+  createIntroShadowDOM()
+  createDetailShadowDOM()
+  getPhysicists()
+})
 </script>
