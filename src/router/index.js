@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import DemoEntry from '../components/DemoEntry.vue'
-
+import NotFound from '@/views/NotFound.vue'
 const routes = [
   {
     path: '/',
@@ -62,6 +62,7 @@ const routes = [
       },
     ]
   },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]
 
 const router = createRouter({
