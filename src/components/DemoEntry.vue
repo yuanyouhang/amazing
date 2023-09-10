@@ -4,9 +4,9 @@
     ref="containerRef"
   >
     <div
-      class="w-1/4 h-1/4 rounded-lg cursor-pointer hover:scale-110 transition-all flex justify-center items-center text-xl shadow-[5px_5px_2px_1px_#9A969B] dark:shadow-none"
+      class="w-1/4 h-1/4 rounded-lg cursor-pointer hover:scale-110 transition-all flex justify-center items-center text-2xl font-bold shadow-[5px_5px_2px_1px_#9A969B] dark:shadow-none"
       v-for="item in items"
-      :style="{ 'background-color': item.bgColor }"
+      :style="{ 'background-color': item.bgColor, 'color': getAntiColor(item.bgColor) }"
       :draggable="true"
       @dragstart="dragstart($event, item)"
       @dragover="dragover"
@@ -23,6 +23,7 @@
 import { ref } from "vue"
 import { useRouter } from 'vue-router'
 import getBgColor from "@/utils/getRandomColor"
+import getAntiColor from '@/utils/getAntiColor'
 
 const router = useRouter()
 const items = ref([
