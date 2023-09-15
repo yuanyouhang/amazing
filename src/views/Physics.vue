@@ -1,10 +1,10 @@
 <template>
   <div class="h-full flex flex-col relative bg-white text-black rounded" ref="containerRef">
-    <PhysicsBg :fullWidth="fullWidth" :fullHeight="fullHeight" />
+    <PhysicsBg ref="physicsBgRef" />
     <router-view v-slot="{ Component }">
-    <keep-alive>
-      <component :is="Component" />
-    </keep-alive>
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
   </router-view>
   </div>
 </template>
@@ -12,14 +12,14 @@
 <script setup>
 import PhysicsBg from '@/components/PhysicsBg.vue';
 import _ from 'lodash'
+import { ref } from 'vue';
 
-const fullWidth = ref(0)
-const fullHeight = ref(0)
 const containerRef = ref(null)
+const physicsBgRef = ref(null)
 // 获取背景画布的宽高
 function getFullWH() {
-  fullWidth.value = containerRef.value.clientWidth
-  fullHeight.value = containerRef.value.clientHeight
+  physicsBgRef.value.fullWidth = containerRef.value.clientWidth
+  physicsBgRef.value.fullHeight = containerRef.value.clientHeight
 }
 onMounted(() => {
   getFullWH()

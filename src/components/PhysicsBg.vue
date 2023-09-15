@@ -9,28 +9,23 @@
 import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, watch } from 'vue'
 import getRandomWeightedInteger from '@/utils/getRandomWeightedInteger.js'
 
-const props = defineProps(['fullWidth', "fullHeight"])
 const fullWidth = ref(0)
 const fullHeight = ref(0)
 let bgCanvas, ctx
 function initBgCanvas() {
   bgCanvas = document.getElementById('PhysicsBgCanvas')
   ctx = bgCanvas.getContext('2d')
+}
+function setBgCanvas() {
   const width = Number(fullWidth.value)
   const height = Number(fullHeight.value)
   bgCanvas.style.width = width + 'px'
   bgCanvas.style.height = height + 'px'
-  // const scale = devicePixelRatio
-  // bgCanvas.width = width * scale
-  // bgCanvas.height = height * scale
   bgCanvas.width = width
   bgCanvas.height = height
 }
-// 监听父组件传递的宽高
-watch([() => props.fullWidth, () => props.fullHeight], ([newWidth, newHeight], [oldWidth, oldHeight]) => {
-  fullWidth.value = newWidth
-  fullHeight.value = newHeight
-  initBgCanvas()
+watch([fullWidth, fullHeight], ([newWidth, newHeight]) => {
+  setBgCanvas()
 })
 
 const areaCount = 6
@@ -43,7 +38,7 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function getRandomXY() {
-  const index = getRandomWeightedInteger()
+  const index = getRandomWeightedInteger() // 获取0~5的随机整数（随机权重不同）
   const minX = (oneAreaWidth.value + oneAreaWidth.value) * index
   const maxX = minX + oneAreaWidth.value
   let x = getRandomNumber(minX, maxX) // 起始x坐标
@@ -88,5 +83,10 @@ onActivated(() => {
 })
 onDeactivated(() => {
   clearInterval(timer)
+})
+
+defineExpose({
+  fullWidth,
+  fullHeight
 })
 </script>

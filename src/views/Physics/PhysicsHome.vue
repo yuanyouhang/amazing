@@ -1,9 +1,9 @@
 <template>
-  <div class="flex h-full z-10 py-4" v-loading="loading" element-loading-background="rgba(0,0,0,0)">
-    <div class="h-full border-r-2 border-slate-300 pr-4 flex-1 group">
+  <div class="flex h-full z-10 py-4">
+    <div class="h-full border-r-2 border-slate-300 pr-4 flex-1 flex flex-col">
       <div class="font-bold text-center text-xl">physicists</div>
       <div
-        v-for="item in somePhysicists"
+        v-for="item in physicists"
         :key="item._id"
         class="mt-4 flex flex-col items-center"
       >
@@ -11,7 +11,7 @@
         <div>{{ `(${item.info.start}~${item.info.end})` }}</div>
         <div>{{ item.name }}</div>
       </div>
-      <div class="text-sky-400 cursor-pointer text-2xl mt-12 group-hover:animate-pulse text-right" @click="toPhysicists()">More ></div>
+      <div class="text-sky-400 cursor-pointer text-2xl mt-auto text-right hover:text-sky-300" @click="toPhysicists()">More ></div>
     </div>
     <div class="h-full border-r-2 border-slate-300 px-4 flex-1 overflow-auto">
       <div class="font-bold text-center text-xl">concepts</div>
@@ -67,14 +67,8 @@ import Dialog from '@/components/Dialog.vue';
 const router = useRouter()
 const api = inject('API')
 const physicists = ref([])
-const somePhysicists = computed(() => {
-  return physicists.value.slice(0, 2)
-})
-const loading = ref(false)
 async function getPhysicists() {
-  loading.value = true
-  const res = await api.getPhysicists()
-  loading.value = false
+  const res = await api.getPhysicistsLimit()
   physicists.value = res.map(item => {
     return {
       ...item,
@@ -85,9 +79,7 @@ async function getPhysicists() {
 const concepts = ref([])
 const currentConcept = ref({})
 async function getConcepts() {
-  loading.value = true
   const res = await api.getConcepts()
-  loading.value = false
   concepts.value = res
 }
 onMounted(() => {

@@ -43,7 +43,6 @@ const routes = [
   },
   {
     path: '/Physics',
-    name: 'Physics',
     component: () => import('@/views/Physics.vue'),
     children: [
       {
