@@ -12,7 +12,7 @@
         {{ item.name }}
       </div>
     </div>
-    <div v-loading="loading" element-loading-background="rgba(0,0,0,0)" class="w-4/5 px-6 h-full overflow-auto">
+    <div class="w-4/5 px-6 h-full overflow-auto">
       <div class="mb-4 overflow-hidden">
         <div class="w-1/2 mr-4 mb-2 float-left">
           <el-image :src="currentItem.img" fit="contain" class="w-full"></el-image>
@@ -30,11 +30,8 @@ import purify from '@/utils/dompurify.js'
 
 const api = inject('API')
 const physicists = ref([])
-const loading = ref(false)
 async function getPhysicists() {
-  loading.value = true
   const res = await api.getPhysicists()
-  loading.value = false
   physicists.value = res.map(item => {
     return {
       ...item,

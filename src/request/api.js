@@ -1,10 +1,9 @@
-// const uniCloud_baseUrl = `https://fc-mp-407a51fd-0e55-433f-9884-1e47bc6290f3.next.bspapp.com` // uniCloud 云函数调用基础路径
-const baseUrl = 'http://121.40.145.223:3003'
+import { ElLoading, ElMessage } from 'element-plus'
+
+const baseUrl = 'http://localhost:3003'
+// const baseUrl = 'http://121.40.145.223:3003'
 
 const objToQuery = (params) => {
-  if(!params) {
-    return params
-  }
   const queryString = Object.entries(params)
   .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
   .join('&')
@@ -12,13 +11,24 @@ const objToQuery = (params) => {
 }
 
 const get = (path, params) => {
-  const url = `${baseUrl}${path}?${objToQuery(params)}`
+  const loadingInstance = ElLoading.service({ body: true, background: 'rgba(0,0,0,0)' })
+  let url
+  if(!params) {
+    url = `${baseUrl}${path}`
+  } else {
+    url = `${baseUrl}${path}?${objToQuery(params)}`
+  }
   return fetch(url).then(res => res.json())
   .then(res => {
     return res
   })
   .catch(err => {
-    return err // TODO:错误处理
+    console.log('get 请求错误：', err);
+    ElMessage.error('请求错误，请刷新重试')
+    throw new Error(err)
+  })
+  .finally(() => {
+    loadingInstance.close()
   })
 }
 
@@ -34,6 +44,9 @@ const api = {
   },
   getPhysicists(params) {
     return get('/physicists', params)
+  },
+  getPhysicistsLimit(params) {
+    return get('/physicists/limit', params)
   },
   getConcepts(params) {
     return get('/concepts', params)

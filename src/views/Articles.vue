@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="loading" element-loading-background="rgba(0,0,0,0)" class="h-full flex flex-col">
+  <div class="h-full flex flex-col">
     <template v-if="!showArticle">
       <div class="flex-1 border shadow-[6px_4px_3px_0px_#918F8F] dark:shadow-none overflow-auto rounded p-6 bg-white text-black">
         <div
@@ -53,11 +53,8 @@ import githubCSS from 'highlight.js/styles/github.css?url'
 
 const api = inject('API')
 const articles = ref([])
-const loading = ref(false)
 async function getArticles() {
-  loading.value = true
   const res = await api.getArticles()
-  loading.value = false
   console.log('获取文章列表返回：', res)
   articles.value = res.map(item => {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div class="border-4 border-sky-500 rounded-lg h-full p-4">
     <!-- 视频列表页 -->
-    <div v-if="!showPlayer" class="h-full flex" v-loading="loading" element-loading-background="rgba(0,0,0,0)">
+    <div v-if="!showPlayer" class="h-full flex">
       <template v-if="videos.length">
         <div class="w-3/5 h-full overflow-auto border-r-2 px-2">
           <div
@@ -54,11 +54,8 @@ import { inject, ref, onMounted, onActivated } from 'vue';
 
 const api = inject('API')
 const videos = ref([])
-const loading = ref(false)
 const getVideos = async () => {
-  loading.value = true
   const res = await api.getVideos()
-  loading.value = false
   console.log('获取视频列表返回：', res)
   videos.value = res.map(item => {
     return {
